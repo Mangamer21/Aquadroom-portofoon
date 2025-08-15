@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquadroom Walkie-Talkie</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔊 Aquadroom Walkie-Talkie</h1>
+            <div class="connection-status" id="connectionStatus">
+                <span class="status-indicator offline"></span>
+                <span class="status-text">Connecting...</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- User Registration -->
+            <div class="section registration-section" id="registrationSection">
+                <h2>Join Communication</h2>
+                <div class="form-group">
+                    <label for="usernameInput">Your Name:</label>
+                    <input type="text" id="usernameInput" placeholder="Enter your name" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label for="deviceTypeSelect">Device Type:</label>
+                    <select id="deviceTypeSelect">
+                        <option value="web">Web Browser</option>
+                        <option value="inrico-t320">Inrico T320</option>
+                        <option value="mobile">Mobile Device</option>
+                        <option value="desktop">Desktop</option>
+                    </select>
+                </div>
+                <button id="joinBtn" class="btn btn-primary">Join Network</button>
+            </div>
+
+            <!-- Main Interface -->
+            <div class="main-interface" id="mainInterface" style="display: none;">
+                <!-- Channel Selection -->
+                <div class="section channels-section">
+                    <h3>Communication Channels</h3>
+                    <div class="channels-list" id="channelsList">
+                        <!-- Channels will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Audio Controls -->
+                <div class="section audio-controls">
+                    <h3>Audio Settings</h3>
+                    <div class="control-group">
+                        <label for="micVolume">Microphone Volume:</label>
+                        <input type="range" id="micVolume" min="0" max="100" value="80">
+                        <span id="micVolumeValue">80%</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="speakerVolume">Speaker Volume:</label>
+                        <input type="range" id="speakerVolume" min="0" max="100" value="80">
+                        <span id="speakerVolumeValue">80%</span>
+                    </div>
+                    <div class="control-group">
+                        <button id="testMicBtn" class="btn btn-secondary">Test Microphone</button>
+                        <div class="mic-level" id="micLevel">
+                            <div class="mic-level-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PTT Controls -->
+                <div class="section ptt-section">
+                    <h3>Push-to-Talk</h3>
+                    <div class="ptt-controls">
+                        <button id="pttButton" class="ptt-button">
+                            <span class="ptt-icon">🎤</span>
+                            <span class="ptt-text">Hold to Talk</span>
+                        </button>
+                        <div class="ptt-instructions">
+                            <p>• Click and hold button to transmit</p>
+                            <p>• Press and hold <strong>SPACE</strong> key</p>
+                            <p>• For Inrico T320: Use PTT hardware button</p>
+                        </div>
+                    </div>
+                    <div class="transmission-status" id="transmissionStatus">
+                        <span class="transmission-indicator"></span>
+                        <span class="transmission-text">Ready</span>
+                    </div>
+                </div>
+
+                <!-- Connected Users -->
+                <div class="section users-section">
+                    <h3>Connected Users</h3>
+                    <div class="users-list" id="usersList">
+                        <p class="no-users">No other users in current channel</p>
+                    </div>
+                </div>
+
+                <!-- Activity Log -->
+                <div class="section activity-section">
+                    <h3>Activity Log</h3>
+                    <div class="activity-log" id="activityLog">
+                        <div class="log-entry">Welcome to Aquadroom Walkie-Talkie</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="remoteAudio" autoplay></audio>
+    
+    <!-- Notification Sound (Data URL for cross-platform compatibility) -->
+    <audio id="notificationSound" preload="auto">
+        <!-- Simple beep sound as data URL -->
+    </audio>
+
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="inrico-integration.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
